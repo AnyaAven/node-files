@@ -7,16 +7,18 @@ const argv = process.argv;
  * File must be passed as the 3rd arg
 */
 async function cat(path) {
+  let contents;
   try {
-    let contents = await readFile(path, "utf8");
-    console.log(contents);
+    //Only try one thing!
+    contents = await readFile(path, "utf8");
   } catch (err) {
 
-    console.log(`Error reading ${path}:`)
-    console.log(err)
+    console.log(`Error reading ${path}: \n ${err}`)
 
     process.exit(1);
   }
+
+  console.log(contents);
 }
 
 await cat(argv[2]);
